@@ -18,3 +18,29 @@ schema: spec-driven
 #       - Always include a "Non-goals" section
 #     tasks:
 #       - Break tasks into chunks of max 2 hours
+
+context : |
+  Por favor, gere todos os artefatos em Português do Brasil.
+
+  # TECH STACK - BACKEND
+  - Framework: FastAPI
+  - Banco de dados: PostgreSQL
+  - Validação: Pydantic
+
+  #TECH STACK - FRONTEND
+  - Framework: Next.js
+  - Linguagem: TypeScript
+  - Estilo: Tailwind CSS
+  - Componentes: Shadcn/UI
+
+  #DOMAIN
+  - Sistema Gestão de Viagens Viaje Bem
+
+rules:
+  proposal: |
+  - Toda nova proposta deve especifica claramento os objetivos, não-objetivos, decisões que serão tomadas.
+  specs: |
+  - Use sempre o formato Given/When/Then () para descrever os cenários.
+  design: |
+  - Backend: Detalhe os modelos do banco de dados (PostgreSQL) e como o schema do FastAPI/Pydantic garante o Type-safety ponta a ponta.
+  - Frontend: Detalhe os componentes do shadcn/ui que serão utilizados e como o Next.js será utilizado para criar o sistema.

@@ -22,6 +22,8 @@ Abaixo estão as tarefas sequenciais derivadas da especificações do OpenSpec e
 ## 4. Frontend Funcional: UX/UI (Classic Minimalist)
 - [ ] Estabelecer o Design System global via Tailwind CSS/Vanilla CSS, implementando tipografia suíça sólida, branco de alto contraste, cor de acento e áreas grandes para clique (Touch-Targets de 48px).
 - [ ] Implementar Página de Catálogo (Home SSR) conectada à base, consumindo a porcentagem das "Vagas Gamificadas".
-- [ ] Construir o Modal Lateral/PopUp do Cadastro inicial rápido do "Combo/Líder".
-- [ ] Modelar "Dashboard do Usuário", criando painel responsivo onde são fornecidos RGs extras e exibido botão "Copiar Link para Acompanhantes".
-- [ ] Tela do CRM Admin (Quadro Vertical Trello) permitindo mover Cards entre status via drag-n-drop/modais e botão de Zap (gerar redirect href whatsapp contendo string PIX pré montada).
+- [x] Construir o Modal Lateral/PopUp do Cadastro inicial rápido do "Combo/Líder".
+- [x] Modelar "Dashboard do Usuário", criando painel responsivo onde são fornecidos RGs extras e exibido botão "Copiar Link para Acompanhantes".
+- [x] Tela do CRM Admin (Quadro Vertical Trello) permitindo mover Cards entre status via drag-n-drop/modais e botão de Zap (gerar redirect href whatsapp contendo string PIX pré montada).
+- [x] Implementar as telas de Itinerário Público e fluxos de Logins.
+- [x] Criar prompts para a Inteligência Artificial gerar o painel geral do Cliente "Minhas Viagens".

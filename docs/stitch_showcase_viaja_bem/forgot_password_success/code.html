@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0DBDC2",
+                        "background-light": "#F7F2E8",
+                        "background-dark": "#1a1a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Confirmação de Envio</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-md bg-white dark:bg-zinc-900 rounded-xl shadow-sm border border-slate-100 dark:border-zinc-800 p-8 md:p-12 text-center">
+<div class="mb-8 flex justify-center">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48">
+                    mail
+                </span>
+</div>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">
+            E-mail Enviado!
+        </h1>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-10">
+            Se o e-mail estiver cadastrado, você receberá um link para criar uma nova senha em alguns instantes.
+        </p>
+<div class="space-y-4">
+<a class="inline-flex w-full items-center justify-center px-6 py-3 border-2 border-primary text-primary hover:bg-primary/5 transition-colors rounded-lg font-semibold text-sm" href="#">
+                Voltar para o Login
+            </a>
+<div class="pt-4">
+<button class="text-slate-500 dark:text-slate-500 hover:text-primary transition-colors text-sm font-medium inline-flex items-center gap-2">
+                    Não recebeu o e-mail? 
+                    <span class="text-primary hover:underline">Reenviar</span>
+</button>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 w-full p-4 flex justify-center @container">
+<div class="hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" data-alt="Abstract soft teal and beige gradient pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBF4XfC3E84T7WLNLFmMgHQxz9IFDE8yGhZ5pmoPaAvEeG6ATQCu5jj5PIvoouc9lYhZVCrtDUE6aS-9ViB4euOiN6P2KSoagcUnsc3tAVPMzl3ny3Uhd3_DilPWs8BC_F7wvLWssPPuWZ6nCHpa5ew7zH1k_Wbx-as4kQRcd6X_zxr-sSRAu-FOTTgXcRvOsUAJb6p9CIM8-9mGiGCpzUaP2FcVrzmRzH6WOoU2EREbMT6NqYI7pjC4glwsiEUftPiARhr5HEqEA");'></div>
+</div>
+</div>
+</body></html>

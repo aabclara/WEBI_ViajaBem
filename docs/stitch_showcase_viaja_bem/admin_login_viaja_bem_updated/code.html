@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa915",
+                        "brand-teal": "#0dbdc2",
+                        "background-light": "#f7f2e8",
+                        "background-dark": "#231c0f",
+                        "text-main": "#1f1f1f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>Viaja Bem - Admin Portal</title>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-sm bg-white dark:bg-slate-900 shadow-md rounded-xl p-8 border border-slate-100 dark:border-slate-800">
+<!-- Header -->
+<div class="flex flex-col items-center mb-8">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-brand-teal text-2xl">lock</span>
+<h1 class="text-brand-teal text-lg font-bold tracking-tight uppercase">Viaje Bem</h1>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Admin Portal</p>
+</div>
+<h2 class="text-text-main dark:text-slate-100 text-xl font-bold mb-6 text-center">Acesso Administrativo</h2>
+<!-- Login Form -->
+<form class="space-y-5">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block text-text-main dark:text-slate-200 text-sm font-semibold">
+                    E-mail
+                </label>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-text-main dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-teal focus:border-brand-teal transition-all text-sm" placeholder="exemplo@viajebem.com.br" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="block text-text-main dark:text-slate-200 text-sm font-semibold">
+                    Senha
+                </label>
+<div class="relative flex items-center">
+<input class="w-full h-12 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-text-main dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-teal focus:border-brand-teal transition-all text-sm pr-12" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 text-slate-400 hover:text-brand-teal transition-colors flex items-center" type="button">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</div>
+<!-- Security Check / Extra link -->
+<div class="flex justify-end !mt-2">
+<a class="text-xs text-brand-teal hover:underline font-medium" href="#">Esqueceu sua senha?</a>
+</div>
+<!-- CTA Button -->
+<button class="w-full h-12 bg-primary hover:bg-amber-500 text-text-main font-bold rounded-lg shadow-sm transition-all transform active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+                Entrar no Painel
+                <span class="material-symbols-outlined text-xl">login</span>
+</button>
+</form>
+<!-- Footer Info -->
+<div class="mt-8 pt-6 border-t border-slate-50 dark:border-slate-800 text-center">
+<p class="text-slate-400 text-[10px] uppercase tracking-widest font-semibold">
+                © 2024 Viaja Bem CRM • Secure B2B Portal
+            </p>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa914",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231c0f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header Section -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/10 justify-between sticky top-0 z-10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 ml-4">Viaja Bem Admin</h2>
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+</div>
+<!-- Main Content (Background Content for Modal Context) -->
+<main class="flex-1 p-6 space-y-6 opacity-40">
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+<h3 class="text-xl font-bold mb-4">Gerenciamento de Viagem: Capitólio</h3>
+<div class="space-y-4">
+<div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4"></div>
+<div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div class="h-20 bg-primary/10 rounded-lg"></div>
+<div class="h-20 bg-primary/10 rounded-lg"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay (Warning Modal) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background-dark/60 backdrop-blur-sm">
+<div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="p-8 flex flex-col items-center text-center">
+<!-- Warning Icon -->
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary !text-5xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<!-- Content -->
+<h3 class="text-slate-900 dark:text-white text-2xl font-bold leading-tight mb-4">
+                    Atenção: Limite de Vagas Excedido
+                </h3>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed mb-8">
+                    Não há vagas suficientes para aumentar o tamanho deste combo. A viagem para <span class="font-semibold text-slate-900 dark:text-white">Capitólio</span> está com lotação máxima.
+                </p>
+<!-- Actions -->
+<button class="w-full py-3 px-6 rounded-xl border-2 border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    Voltar
+                </button>
+</div>
+<!-- Contextual Map Indicator -->
+<div class="w-full h-32 relative bg-slate-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale opacity-30" data-alt="Monochrome map of travel destination route" data-location="Capitólio, Brazil" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8tSEQQoYRTBtL0pvIES1xuBlMc9D-HbQz-L1sqRRBFJw0Y67TCRImu81GuJd7RkiOm7h5fAHfbAWTbkLWRdcSyfuZPeT62jJ_ECiH0jNTTsnJXcuvdNwLxa0QFhdVXEMQ2OdeN_QV-MqaNU-nJQ0EkKYjHRLhn5XJDPPrP4TF9DGRHcGpoTTm3HwnUTSj9VqdWM2GBAWkhQHPrieXvAoqNtNkB0Cy0FYtcaiLPMkCYq6A0pt3ncxeS_Wow1mVbwZlo59lDRNn3g')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<div class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark px-4 pb-6 pt-2 flex justify-between items-center safe-area-bottom">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-medium">Dashboard</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">map</span>
+<p class="text-[10px] font-medium">Viagens</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<p class="text-[10px] font-medium">Reservas</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-medium">Ajustes</p>
+</a>
+</div>
+</body></html>

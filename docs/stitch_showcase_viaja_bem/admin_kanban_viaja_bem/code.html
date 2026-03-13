@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa914",
+                        "teal-brand": "#0dbdc2",
+                        "background-light": "#f7f2e8",
+                        "background-dark": "#231c0f",
+                        "neutral-border": "#e2e8f0",
+                        "text-main": "#1f1f1f"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .kanban-column { min-width: 280px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased">
+<div class="flex flex-col h-screen overflow-hidden">
+<header class="bg-white border-b border-neutral-border px-6 py-3 flex items-center justify-between shrink-0">
+<div class="flex items-center gap-3">
+<img class="h-8 w-auto" data-alt="Viaja Bem brand logo minimalist mark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzxIbCtvoKR9_n4ouyRY3-TO5RrPdkMp_K7_BApIAROkm5QZutirNOCnsxRMpeZN37PiCURcbGU3OWJ7QMqsjfLyAuLZxrPPRTUtN9spo4XfQq0HEaXWKcyJS9LvMFq55rQKMjLpA0mqQ-j69URe_3QlTjywbFOUTu55XdLeZtPUjx5Qig2gGHEXll6hhoMC5QDIONtngXJ5PRKW5dntAKh_TVW3nHc3mlhb9l4i-uPXg-VsukCieFfIB5ZT35yQmu_nBLINWsBA"/>
+<h1 class="text-lg font-bold tracking-tight">Viaja Bem Admin</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 border border-neutral-border overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFeDm_d6tpVAeetociDZf9FbV6ArcaTuDR52TaEXQ3z0ari6WjDCkCOEd4PfaHqyZalUPKMsYQNtJW8g9VY3zOoG6T-VbNoanHoZ-trToWoLTTwemfl1JAqmMJr3C0djyJBcCKr-PzzCPX0bJ9ixEdhuUujbA4ZjpH3kBdU8uua9JYvkSZ9AUrtLo1cauSmsrOF7jRQhFsKZWaGqGbrm-3ainrSxThhx6g7btIzuLwZnaEYt4zUEinT_gJlw7iiLrzSHTzQpjavA"/>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-6 space-y-6">
+<section class="bg-white rounded-xl border border-neutral-border p-6 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold text-text-main">Painel de Reservas - Capitólio 2 Dias</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-sm text-slate-400">calendar_today</span>
+<p class="text-sm text-slate-500 font-medium tracking-wide uppercase">Saída: 15 Outubro, 2023</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 min-w-[240px]">
+<div class="flex justify-between items-end">
+<p class="text-sm font-semibold text-text-main">Ocupação Atual</p>
+<p class="text-lg font-bold text-primary">34/40 vagas</p>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%;"></div>
+</div>
+<p class="text-[11px] text-right text-slate-400 font-medium">85% preenchido</p>
+</div>
+</div>
+</section>
+<div class="flex gap-4 overflow-x-auto pb-6 h-full items-start">
+<div class="kanban-column flex flex-col gap-4 w-1/4">
+<div class="flex items-center justify-between px-2">
+<h3 class="font-bold text-sm text-slate-600 uppercase tracking-widest flex items-center gap-2">
+<span class="size-2 rounded-full bg-blue-400"></span>
+                            Novos <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded ml-1">4</span>
+</h3>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-lg">add</span></button>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-white p-4 rounded-lg border border-neutral-border shadow-sm hover:border-primary/50 cursor-pointer transition-all">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-text-main">João Silva</h4>
+<span class="text-[10px] font-bold text-slate-400">#9832</span>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">groups</span> 4 Vagas
+                                </div>
+<div class="flex items-center gap-2 text-xs font-bold text-text-main">
+<span class="material-symbols-outlined text-sm">payments</span> R$ 1.200,00
+                                </div>
+</div>
+<button class="w-full py-2 bg-teal-brand/10 text-teal-brand hover:bg-teal-brand hover:text-white rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-base">chat</span> WhatsApp
+                            </button>
+</div>
+<div class="bg-white p-4 rounded-lg border border-neutral-border shadow-sm hover:border-primary/50 cursor-pointer transition-all">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-text-main">Maria Oliveira</h4>
+<span class="text-[10px] font-bold text-slate-400">#9835</span>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">groups</span> 2 Vagas
+                                </div>
+<div class="flex items-center gap-2 text-xs font-bold text-text-main">
+<span class="material-symbols-outlined text-sm">payments</span> R$ 600,00
+                                </div>
+</div>
+<button class="w-full py-2 bg-teal-brand/10 text-teal-brand hover:bg-teal-brand hover:text-white rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-base">chat</span> WhatsApp
+                            </button>
+</div>
+</div>
+</div>
+<div class="kanban-column flex flex-col gap-4 w-1/4">
+<div class="flex items-center justify-between px-2">
+<h3 class="font-bold text-sm text-slate-600 uppercase tracking-widest flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+                            Aguardando Sinal <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded ml-1">2</span>
+</h3>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-white p-4 rounded-lg border-l-4 border-l-primary border border-neutral-border shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-text-main">Carlos Pereira</h4>
+<span class="text-[10px] font-bold text-primary">PENDENTE</span>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">groups</span> 1 Vaga
+                                </div>
+<div class="flex items-center gap-2 text-xs font-bold text-text-main">
+<span class="material-symbols-outlined text-sm">payments</span> R$ 300,00
+                                </div>
+</div>
+<button class="w-full py-2 bg-teal-brand/10 text-teal-brand hover:bg-teal-brand hover:text-white rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-base">chat</span> WhatsApp
+                            </button>
+</div>
+</div>
+</div>
+<div class="kanban-column flex flex-col gap-4 w-1/4">
+<div class="flex items-center justify-between px-2">
+<h3 class="font-bold text-sm text-slate-600 uppercase tracking-widest flex items-center gap-2">
+<span class="size-2 rounded-full bg-teal-brand"></span>
+                            Pago &amp; Confirmado <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded ml-1">12</span>
+</h3>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-teal-brand/5 p-4 rounded-lg border border-teal-brand/20 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-text-main">Ana Beatriz L.</h4>
+<span class="material-symbols-outlined text-teal-brand text-sm">verified</span>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">groups</span> 3 Vagas
+                                </div>
+<div class="flex items-center gap-2 text-xs font-bold text-text-main">
+<span class="material-symbols-outlined text-sm">payments</span> R$ 900,00
+                                </div>
+</div>
+<div class="bg-teal-brand text-white text-[10px] py-1 text-center rounded font-bold uppercase tracking-wider">
+                                Confirmado
+                            </div>
+</div>
+</div>
+</div>
+<div class="kanban-column flex flex-col gap-4 w-1/4">
+<div class="flex items-center justify-between px-2">
+<h3 class="font-bold text-sm text-slate-600 uppercase tracking-widest flex items-center gap-2">
+<span class="size-2 rounded-full bg-slate-400"></span>
+                            Cancelados <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded ml-1">1</span>
+</h3>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-white p-4 rounded-lg border border-neutral-border shadow-sm opacity-60">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-bold text-text-main">Roberto Dias</h4>
+<span class="text-[10px] font-bold text-red-400 tracking-tighter">REFUNDED</span>
+</div>
+<div class="space-y-1 mb-4">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">groups</span> 2 Vagas
+                                </div>
+<div class="flex items-center gap-2 text-xs font-bold text-slate-400 line-through">
+                                    R$ 600,00
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="bg-white border-t border-neutral-border shrink-0 px-6 py-2">
+<div class="max-w-4xl mx-auto flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Reservas</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Clientes</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Financeiro</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Ajustes</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

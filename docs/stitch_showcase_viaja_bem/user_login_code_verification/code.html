@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0DBDC2", // Teal for main actions as per user request
+                        "accent": "#FFA915", // Amber for secondary
+                        "background-light": "#F7F2E8", // Solid Cream
+                        "background-dark": "#1a160f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center justify-between p-6">
+<!-- Top Section: Logo -->
+<header class="w-full max-w-md flex justify-center pt-8">
+<img alt="Viaja Bem Logo" class="h-12 w-auto" data-alt="Viaja Bem Travel Agency Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlda88JVblA6ItvgMOKsNMwlWxOLHqh3KRBBd00JV1fp0_BtKSqexo76tM4WZvVCh6XyTUxdzOcWNPEpFXEhZdolGEPP9HdlNIyQi_lcisUriAwgNB43K04I8jrEezyPgPFCX52HCNzFjgmycVN6l2ZKCZyw_NlCJX-pEdbK9TYtJIxhEPHpWRC6QKQrfXcWrRrJI8-KFH6F_JGtn6_Ge7B2_iXHZfNoY-feREMSP0bzungRmCo8p1Nss2F82njwBH78Frb6fSUg"/>
+</header>
+<!-- Main Content: Verification Form -->
+<main class="w-full max-container max-w-md flex-1 flex flex-col items-center justify-center text-center">
+<div class="mb-8">
+<div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined !text-4xl">system_update_alt</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-bold tracking-tight mb-4">Código Enviado!</h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed px-2">
+                Insira o código de 6 dígitos enviado para o seu e-mail ou WhatsApp para acessar sua reserva.
+            </p>
+</div>
+<!-- Verification Code Inputs -->
+<div class="w-full mb-10">
+<fieldset class="flex justify-between gap-2 sm:gap-4 max-w-sm mx-auto">
+<input aria-label="Digit 1" class="w-full h-16 text-center text-2xl font-bold border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 2" class="w-full h-16 text-center text-2xl font-bold border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 3" class="w-full h-16 text-center text-2xl font-bold border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 4" class="w-full h-16 text-center text-2xl font-bold border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 5" class="w-full h-16 text-center text-2xl font-bold border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none" maxlength="1" type="text"/>
+<input aria-label="Digit 6" class="w-full h-16 text-center text-2xl font-bold border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none" maxlength="1" type="text"/>
+</fieldset>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mb-6">
+            Verificar Código
+        </button>
+<!-- Resend Section -->
+<div class="flex flex-col gap-2">
+<p class="text-slate-600 dark:text-slate-400">Não recebeu o código?</p>
+<button class="text-accent hover:text-accent/80 font-semibold text-lg underline-offset-4 hover:underline">
+                Reenviar
+            </button>
+</div>
+</main>
+<!-- Footer Navigation -->
+<footer class="w-full max-w-md pb-8">
+<a class="flex items-center justify-center gap-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors font-medium" href="#">
+<span class="material-symbols-outlined !text-xl">arrow_back</span>
+            Voltar
+        </a>
+</footer>
+</body></html>

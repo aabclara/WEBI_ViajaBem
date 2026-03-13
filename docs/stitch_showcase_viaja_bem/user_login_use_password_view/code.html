@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0DBDC2", // Updated to Teal/Cyan as requested
+                        "accent-orange": "#FFA915",
+                        "background-light": "#F7F2E8",
+                        "background-dark": "#231c0f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation / Logo Area -->
+<header class="flex items-center justify-between p-4">
+<div class="flex size-12 items-center justify-center">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">close</span>
+</div>
+<div class="flex-1 flex justify-center pr-12">
+<img alt="Viaja Bem Logo" class="h-8" data-alt="Viaja Bem brand logo minimalist typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTmf7zwjWMUpfO6t4bSUe2DWWPRgZKs8wvBvvZ-mRwG3W1j_IuGGCQiS1ywIXsPWRJqYHJDz1lp44-3m2wjd4R4hCOTQqeZxGLQXjZyv-WCsFe2Egr772vP9hEeHLDfV-ImirhN4FVohbOJeGgil6IL6RkRirl5C4tfv_2AZiGfhCK75b2xI5mFcpAhVg8gh71QXEafH9-_uAbBgC726y3A6JjpSlICdLUzt8ZXWH42HoS4uL_KY7_OzOjETaKUOEfBZSgxALDUw"/>
+</div>
+</header>
+<main class="flex-1 w-full max-w-md mx-auto px-4 pb-8">
+<!-- Hero Title Section -->
+<div class="pt-6 pb-2 text-center">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Acesse sua viagem</h1>
+<p class="mt-3 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                Insira seus dados para acessar o seu voucher e roteiro completo.
+            </p>
+</div>
+<!-- Tab Toggle -->
+<div class="mt-8 mb-6">
+<div class="flex border-b border-slate-200 dark:border-slate-700">
+<button class="flex-1 py-4 text-sm font-bold text-slate-400 border-b-2 border-transparent">
+                    Receber Código
+                </button>
+<button class="flex-1 py-4 text-sm font-bold text-primary border-b-2 border-primary">
+                    Usar Senha
+                </button>
+</div>
+</div>
+<!-- Login Form -->
+<form class="space-y-5" onsubmit="return false;">
+<!-- Email Input -->
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">E-mail ou Telefone</label>
+<div class="relative">
+<input class="w-full h-[56px] px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="exemplo@email.com" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Sua Senha</label>
+<div class="relative">
+<input class="w-full h-[56px] px-4 pr-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="********" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password Link -->
+<div class="flex justify-end">
+<a class="text-accent-orange font-bold text-sm hover:underline" href="#">Esqueceu sua senha?</a>
+</div>
+<!-- CTA Button -->
+<button class="w-full h-14 bg-primary text-white rounded-xl font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:brightness-110 active:scale-[0.98] transition-all">
+                Entrar na Viagem
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<!-- Footer / Support -->
+<div class="mt-10 text-center">
+<p class="text-sm text-slate-600 dark:text-slate-400">Não encontrou a reserva?</p>
+<a class="inline-flex items-center gap-2 mt-2 text-accent-orange font-bold hover:underline" href="#">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+                Fale com a agência via WhatsApp
+            </a>
+</div>
+<!-- Scenic Footer Image -->
+<div class="mt-12 rounded-2xl overflow-hidden shadow-sm">
+<div class="w-full h-40 bg-cover bg-center" data-alt="Peaceful scenic landscape with mountains and lake at sunset" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVEKQiXDoW-5OLi6gFI84bhxAtXhaq8jN-PRMEQH5g6k3lWIzNaYhE8BXht0yOYXUrAaKnf6Dh0BFLiBpz71Xzph3e2aqK1OnCVH9E7JsCpJwhjaka6HMqV2iHV1ouBXi2ZUk6XE0x4RWBEQdRhXuy8sBvJ_EiTmmUowMV4tsWL0igVafA_PXsLuC6v63sUd5hWxLxjM_xjyIFi49AWyCGrtPSR50IQKTjlbTrB-LtzfXRezlrC4_m9y46wjMGN-mi8PhmXE4jOg')">
+</div>
+</div>
+</main>
+<!-- Bottom Spacing -->
+<div class="h-8 bg-background-light dark:bg-background-dark"></div>
+</body></html>
