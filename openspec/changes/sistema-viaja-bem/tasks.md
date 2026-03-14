@@ -1,29 +1,43 @@
-# Tasks: Sistema Viaja Bem (MVP)
+# Tasks: Sistema Viaja Bem (MVP) - Micro-Passos
 
-Abaixo estão as tarefas sequenciais derivadas da especificações do OpenSpec e do document de Design de Software, prontas para o início da fase de execução.
+Este cronograma foi refatorado em micro-tarefas ("Small Chained Steps") para garantir que o desenvolvimento (seja por humanos ou IA) ocorra sem perda de contexto arquitetural. Nenhuma tarefa contém mais de um domínio lógico.
 
-## 1. Fundação e Infraestrutura (DevOps & Docker)
-- [ ] Criar template local base (FastAPI + Pydantic) para o Backend Python.
-- [ ] Inicializar projeto escalável (Next.js 14+) para o Frontend.
-- [ ] Escrever arquivo `docker-compose.yml` contendo os 3 principais serviços: PostgreSQL, Backend da API e App Frontend.
-- [ ] Configurar integrações e schemas do GitHub Actions local para CI/CD inicial.
+## Fase 1: Fundação & Infraestrutura (DevOps Inicial)
+- [ ] **1.1.** Criar a pasta do Back-End `backend/` e inicializar o ambiente virtual Python (`venv`).
+- [ ] **1.2.** Instalar as dependências base do Back-End: `fastapi`, `uvicorn`, `pydantic`, `sqlalchemy`, e `alembic`.
+- [ ] **1.3.** Criar o arquivo `backend/main.py` com uma rota "Hello World" do FastAPI rodando.
+- [ ] **1.4.** Criar a pasta do Front-End `frontend/` rodando `npx create-next-app@latest` (usando App Router e Tailwind).
+- [ ] **1.5.** Redigir o arquivo `docker-compose.yml` na raiz do projeto contendo um container para o "PostgreSQL" local.
 
-## 2. Modelagem do Domínio (DDD) e Banco de Dados
-- [ ] Declarar as entidades do Python relativas à Camada de Negócios: `User`, `Trip`, `Reservation`, `Passenger`.
-- [ ] Criar scripts de Migrations via ORM (ex: Alembic ou Prisma) refletindo as entidades criadas para os Tiers e Gamificação.
-- [ ] Testes Unitários Base: Criar suite rodando `pytest` sobre a lógica que proíbe alterações no Tamanho de Combo se o Status for superior a "CREATED".
+## Fase 2: Modelagem de Dados e ORM (DDD)
+- [ ] **2.1.** Mapear Entidade/Tabela `User` no SQLAlchemy (Campos: id, name, email, role).
+- [ ] **2.2.** Mapear Entidade/Tabela `Trip` no SQLAlchemy (Campos: id, destination, seats, price).
+- [ ] **2.3.** Mapear Entidade/Tabela `Reservation` (FKs para User/Trip, comb_size e status enum).
+- [ ] **2.4.** Mapear Entidade/Tabela `Passenger` (FK para Reservation, nome e RG).
+- [ ] **2.5.** Gerar a primeira migration (`alembic revision --autogenerate`) contendo todas as 4 tabelas e rodar o `alembic upgrade head`.
 
-## 3. APIs REST e Lógica Administrativa
-- [ ] Rota Básico de Login/Sessão (OTP e Password tradicional).
-- [ ] Rota de Criação de Intenção (`POST /reservas` - Trancando Carrinho e Subtraindo Assentos das Entidades).
-- [ ] Serviço de Workflow Admin: `PATCH /reservas/{id}/status` mudando estado do CRM (ex: Confirmando o Pagamento do Sinal para bloquear IDs de preenchimento).
-- [ ] Gerar arquivo de contrato Swagger (openapi.json) a partir das rotas FastApi para ingestão no Frontend.
+## Fase 3: Regras Core de Negócio (Back-End)
+- [ ] **3.1.** Codificar o *Controller/Router* de criação de Reserva (`POST /reservas`), recebendo um input Pydantic de `combo_size` e `email`.
+- [ ] **3.2.** Codificar o Serviço (Use Case) que checa se o "Combo" requisitado não excede os Lugares Disponíveis da `Trip`.
+- [ ] **3.3.** Codificar o Serviço de mudança de estado (`PATCH /reservas/{id}/status`) mudando de CREATED para BLOCKED.
+- [ ] **3.4.** Escrever um teste unitário rústico (`pytest`) verificando que é impossível alterar o `combo_size` de uma reserva já `BLOCKED`.
 
-## 4. Frontend Funcional: UX/UI (Classic Minimalist)
-- [ ] Estabelecer o Design System global via Tailwind CSS/Vanilla CSS, implementando tipografia suíça sólida, branco de alto contraste, cor de acento e áreas grandes para clique (Touch-Targets de 48px).
-- [ ] Implementar Página de Catálogo (Home SSR) conectada à base, consumindo a porcentagem das "Vagas Gamificadas".
-- [x] Construir o Modal Lateral/PopUp do Cadastro inicial rápido do "Combo/Líder".
-- [x] Modelar "Dashboard do Usuário", criando painel responsivo onde são fornecidos RGs extras e exibido botão "Copiar Link para Acompanhantes".
-- [x] Tela do CRM Admin (Quadro Vertical Trello) permitindo mover Cards entre status via drag-n-drop/modais e botão de Zap (gerar redirect href whatsapp contendo string PIX pré montada).
-- [x] Implementar as telas de Itinerário Público e fluxos de Logins.
-- [x] Criar prompts para a Inteligência Artificial gerar o painel geral do Cliente "Minhas Viagens".
+## Fase 4: O Design System e Globals (Front-End)
+- [ ] **4.1.** Injetar as cores oficiais (`#F7F2E8` Creme, `#0DBDC2` Ciano, `#FFA915` Laranja) no arquivo `tailwind.config.ts`.
+- [ ] **4.2.** Importar e definir a família de fontes ('Inter' ou 'Roboto') como padrão global no `layout.tsx` e `globals.css`.
+- [ ] **4.3.** Criar o componente base de "Botão Principal Primário" reutilizável (Tamanho 48px, Cor Laranja).
+
+## Fase 5: Integração Telas Públicas (App UI)
+- [ ] **5.1.** Construir o Layout Principal Vitrine (`page.tsx` home): Fundo Creme e o Header com as 4 âncoras ("Quem Somos", "Contato").
+- [ ] **5.2.** Construir e importar os *Card Components* de Destino no grid da Home.
+- [ ] **5.3.** Integrar a lógica da "Barra de Gamificação" nesses Cards, simulando a matemática de `(Ocupados / Vagas Totais) * 100` em Laranja.
+- [ ] **5.4.** Construir o Modal Lateral/PopUp de Checkout que surge ao clicar no Card de Viagem.
+
+## Fase 6: Integração Telas de Painéis (Burocracia & CRM)
+- [ ] **6.1.** Construir a Tela de Login unificada (Tabulada entre "Usuário / Código" e "Senha").
+- [ ] **6.2.** Desenvolver o "Dashboard Meu Painel" (Cliente): Renderizar a lista de viagens ativas com botões Laranja de Pagamento Pendente ou Ciano de Confirmado.
+- [ ] **6.3.** Construir o fluxo dentro do Painel Cliente para Adicionar as strings de RG dependendo do tamanho do combo.
+- [ ] **6.4.** Clicar e renderizar a Tela Isolada B2B: "Admin Login".
+- [ ] **6.5.** Puxar o "CRM Kanban Admin" construindo as 4 colunas verticais CSS.
+- [ ] **6.6.** Codificar os "Draggables Cards" (Intenções) e o botão com link SVG contendo o `href="https://wa.me/"` para cobrar o Pix.
+- [ ] **6.7.** Finalizar com a UI Leve do Itinerário Público (Vírus Compartilhável) sem botões de edição de usuário.

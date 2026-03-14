@@ -11,8 +11,8 @@ As páginas e os componentes React/Tailwind devem limitar-se à paleta matemáti
 - **THEN** ele só deve utilizar os Hexadecimais oficiais:
   - **Fundo Global/Containers Externos:** Creme / Off-White (`#F7F2E8`). Protege a visão e aquece a percepção.
   - **Contêineres Internos/Cartões (Cards):** Branco Absoluto (`#FFFFFF`).
-  - **Urgência e CTAs Primários:** Laranja / Âmbar vibrante (`#FFA915`). Exclusivo para botões "Comprar Vaga", "Pagar", ou para a barra de "Vagas Restantes". Transmite Alerta e Escassez.
-  - **Confiança e Interação Secundária:** Ciano / Teal (`#0DBDC2`). Usado para botões secundários ("Acessar Painel", "Confirmado"), links de navegação e bordas de foco em Text Inputs.
+  - **Foco e Descoberta Inicial (Hero):** Laranja / Âmbar vibrante (`#FFA915`). Usado para o botão primário de descoberta "Explorar Destinos" e para a barra de "Vagas Restantes" dentro dos cartões, transmitindo escassez e impacto visual primário.
+  - **Ação Transacional (Cards e Login):** Ciano / Teal (`#0DBDC2`). Oficializado como o botão de reserva ("Reservar Agora") dentro das Vitrines, botões de acesso à agência e navegação. Transmite segurança e estabilidade no momento do clique de compra.
   - **Carga de Texto:** Chumbo Estrito (`#1F1F1F`).
 
 #### Scenario: Tipografia e Acessibilidade Tátil
@@ -24,7 +24,7 @@ As páginas e os componentes React/Tailwind devem limitar-se à paleta matemáti
 A aplicação condensará todo o negócio do MVP em 5 visões estritas e 2 modais acoplados.
 
 #### Scenario: A Visão Pública e Captura Emocional
-- **Vitrine de Destinos (Home):** Ponto de SEO (Server-Side Rendered). Fundo creme. Sem "Hero Banner" genérico de topo: a página entra direto no Grid fotográfico de destinos, otimizando o tempo até o clique. O Header será corporativo, apresentando a Logo e os links estratégicos de credibilidade: "Quem somos", "Como funcionam as viagens", "Ajuda" e "Contato", além do acesso de "Login" do cliente. A presença forte da "Barra Laranja de Gamificação" indicará a escassez das vagas do ônibus em todos os cartões do grid.
+- **Vitrine de Destinos (Home):** Ponto de SEO (Server-Side Rendered). Fundo creme. A página inicia com um "Split Hero Section": lado esquerdo apresentando a proposta de valor "Viagens rápidas. Lotação coletiva." com os dois CTAs principais (Laranja e Ciano), e o lado direito apresentando uma imagem em grande destaque (proporção 4/3). Abaixo do Hero, entra o Grid fotográfico de destinos (`Próximas Saídas`). A presença forte da "Barra Laranja de Gamificação" indicará a escassez das vagas do ônibus em todos os cartões do grid. O Header será estrito: contendo a Logo e o botão simples de Login, focado inteiramente na conversão.
 - **Modal de Checkout Rápido:** Abre sobre a Home. Fundo branco puro. Oculta menus. Permite ao "Líder" salvar *apenas* a quantidade do Combo e seu Email, enviando os ingressos para o estado `CREATED` instantaneamente.
 - **Página de Itinerário Público (Vírus):** Link lido de forma orgânica gerado ao final do funil. Modo read-only blindado contendo CTA chamativo para "captar leads amigos" que também queiram ir.
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Roteiro de Viagem - Viaje Bem</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Lucide Icons (Development use via CDN) -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style data-purpose="custom-fonts">
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F7F2E8; /* Solid Cream Background */
+    }
+    
+    .serif-title {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+<style data-purpose="layout-tweaks">
+    .banner-rounded {
+      border-bottom-left-radius: 3rem;
+      border-bottom-right-radius: 3rem;
+    }
+    .overlap-card {
+      margin-top: -2.5rem;
+    }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+<!-- BEGIN: Main Container -->
+<main class="max-w-md mx-auto min-h-screen pb-12 flex flex-col items-center">
+<!-- BEGIN: Hero Banner -->
+<section class="relative w-full h-80 bg-slate-200 banner-rounded overflow-hidden shadow-lg" data-purpose="hero-banner">
+<!-- Destination Image -->
+<img alt="Capitólio, MG" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcM1Wvsktu6XiZKK94xhxmUHoRsyhafU_A4MiCq-nBXjUt_uKotMftK6yQhJIUZceByBhkn7TCZkbKWICGTwDBIIP_nffSeC5MjxO6Fh7wm5efXNMIxNTS200280SBI126LRhELKC2yVUshLcA9fAwxPtfn2845pbigw13v8JJgO8c-DsLeN_aQAsfKfjGBDhw6ieVTZYcn6wbTfqVd4cdXsLb3bVposxWYupmY1MZHeK_d5TnH7tBxbc4pDOnNS0pcYmR-AUOAg"/>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 bg-black/30 flex flex-col justify-end p-8 pb-16">
+<h1 class="text-white text-3xl md:text-4xl leading-tight text-center font-bold">
+          Viagem do Grupo Família Silva!
+        </h1>
+</div>
+</section>
+<!-- END: Hero Banner -->
+<!-- BEGIN: Main Content Area -->
+<div class="px-5 w-full overlap-card z-10 space-y-4">
+<!-- BEGIN: Trip Info Card -->
+<article class="bg-white rounded-3xl p-6 shadow-md border border-amber-50" data-purpose="trip-details">
+<div class="flex items-center justify-between mb-4">
+<span class="bg-[#0DBDC2]/10 text-[#0DBDC2] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            Status: Vagas do Ônibus Confirmadas! ✅
+          </span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex flex-col items-center">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+<div class="w-0.5 h-12 border-l-2 border-dashed border-slate-200"></div>
+<div class="w-2 h-2 rounded-full bg-[#0DBDC2]"></div>
+</div>
+<div class="flex flex-col gap-5">
+<div>
+<p class="text-xs text-slate-400 font-semibold uppercase tracking-tighter">Origem</p>
+<h2 class="text-lg font-bold">São Paulo, SP</h2>
+</div>
+<div>
+<p class="text-xs text-slate-400 font-semibold uppercase tracking-tighter">Destino</p>
+<h2 class="text-lg font-bold text-[#0DBDC2]">Capitólio, MG</h2>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-slate-50">
+<i class="w-5 h-5 text-amber-500" data-lucide="clock"></i>
+<div>
+<p class="text-xs text-slate-400 uppercase">Embarque</p>
+<p class="text-sm font-semibold">Sexta-feira, 20:00</p>
+</div>
+</div>
+</article>
+<!-- END: Trip Info Card -->
+<!-- BEGIN: Accommodation Card -->
+<article class="bg-white rounded-3xl p-6 shadow-md" data-purpose="accommodation-details">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 bg-amber-100 rounded-xl">
+<i class="w-5 h-5 text-amber-600" data-lucide="hotel"></i>
+</div>
+<h3 class="text-lg font-bold">Sua Hospedagem</h3>
+</div>
+<div class="space-y-3">
+<p class="text-xl font-medium text-slate-700">Pousada Recanto do Lago</p>
+<div class="flex items-center gap-2 text-sm text-slate-500">
+<i class="w-4 h-4" data-lucide="calendar-check-2"></i>
+<span>Check-in: <strong>Sábado, 08:00</strong></span>
+</div>
+</div>
+</article>
+<!-- END: Accommodation Card -->
+<!-- BEGIN: Itinerary Section -->
+<section class="py-4" data-purpose="itinerary-list">
+<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+<i class="w-5 h-5 text-amber-500" data-lucide="map"></i>
+          Programação
+        </h3>
+<div class="space-y-3">
+<!-- Activity Item -->
+<div class="flex items-center gap-4 bg-white/50 p-4 rounded-2xl border border-white">
+<div class="p-3 bg-white rounded-full shadow-sm">
+<i class="w-5 h-5 text-[#0DBDC2]" data-lucide="ship"></i>
+</div>
+<div>
+<p class="font-bold">Passeio de Lancha</p>
+<p class="text-sm text-slate-500">Canyons e Cachoeiras</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex items-center gap-4 bg-white/50 p-4 rounded-2xl border border-white">
+<div class="p-3 bg-white rounded-full shadow-sm">
+<i class="w-5 h-5 text-[#0DBDC2]" data-lucide="mountain"></i>
+</div>
+<div>
+<p class="font-bold">Trilhas Ecológicas</p>
+<p class="text-sm text-slate-500">Mirante dos Canyons</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex items-center gap-4 bg-white/50 p-4 rounded-2xl border border-white">
+<div class="p-3 bg-white rounded-full shadow-sm">
+<i class="w-5 h-5 text-[#0DBDC2]" data-lucide="utensils"></i>
+</div>
+<div>
+<p class="font-bold">Jantar de Confraternização</p>
+<p class="text-sm text-slate-500">Centro de Capitólio</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Itinerary Section -->
+<!-- BEGIN: Lead Capture CTA -->
+<section class="mt-8 pt-6 border-t border-slate-200 text-center" data-purpose="lead-capture">
+<p class="text-sm text-slate-500 mb-4 font-medium italic">Ainda não está neste grupo?</p>
+<button class="w-full bg-[#FFA915] hover:bg-[#e89a12] active:scale-[0.98] transition-all text-black font-extrabold text-lg py-5 px-4 rounded-2xl shadow-xl shadow-amber-200 uppercase tracking-wide">
+          Quero Reservar Minha Vaga Neste Ônibus
+        </button>
+</section>
+<!-- END: Lead Capture CTA -->
+<!-- BEGIN: Footer Logo -->
+<footer class="mt-12 mb-8 flex flex-col items-center opacity-70" data-purpose="footer-branding">
+<img alt="Viaje Bem Logo" class="h-14 w-auto mb-2" src="data:image/png;base64,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"/>
+<p class="text-[10px] text-slate-400 uppercase tracking-[0.2em]">Agência de Turismo</p>
+</footer>
+<!-- END: Footer Logo -->
+</div>
+<!-- END: Main Content Area -->
+</main>
+<!-- END: Main Container -->
+<!-- BEGIN: Scripts -->
+<script data-purpose="lucide-init">
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+<!-- END: Scripts -->
+</body></html>
