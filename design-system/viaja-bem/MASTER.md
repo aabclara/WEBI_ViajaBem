@@ -1,4 +1,4 @@
-# Design System Master File
+# Design System Master File (Strict Viaja Bem SDD)
 
 > **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
 > If that file exists, its rules **override** this Master file.
@@ -6,198 +6,67 @@
 
 ---
 
-**Project:** Viaja Bem
-**Generated:** 2026-03-13 13:43:04
+**Project:** Viaja Bem (MVP)
 **Category:** Travel/Tourism Agency
+**Aesthetic:** Minimalist Classic
 
 ---
 
 ## Global Rules
 
-### Color Palette
+### 1. Color Palette (Variáveis Tailwind Obrigatórias)
 
-| Role | Hex | CSS Variable |
-|------|-----|--------------|
-| Primary | `#0EA5E9` | `--color-primary` |
-| Secondary | `#38BDF8` | `--color-secondary` |
-| CTA/Accent | `#F97316` | `--color-cta` |
-| Background | `#F0F9FF` | `--color-background` |
-| Text | `#0C4A6E` | `--color-text` |
+A aplicação deve restringir seu gamut visual a estes exatos Hexadecimais no `tailwind.config.ts`:
 
-**Color Notes:** Sky blue + adventure orange
+| Role | Hex | Tailwind Class Name | Uso Semântico |
+|------|-----|-------------------|---------------|
+| Primary / Urgency | `#ffa914` | `bg-primary` | Barras de Gamificação (`Progress`), Botão Hero de Descoberta. |
+| Secondary / Action | `#0DBDC2` | `text-accent-teal` / `bg-accent-teal`| Botões de transação garantida ("Reservar Agora"), Âncoras e Links. |
+| Background Light | `#F7F2E8` | `bg-background-light` | Fundo base global da Aplicação HTTP. |
+| Background Dark | `#231c0f` | `bg-background-dark` | Suporte a Dark Mode foliar (Header/Footer). |
+| Cards & Containers | `#ffffff` | `bg-card-white` | Fundo de vitrines, cartões e modais elevados. |
+| Text Main | `#1F1F1F` | `text-text-main` | Tipografia massiva de alto contraste (WCAG AAA). |
 
-### Typography
+### 2. Typography
 
-- **Heading Font:** Cormorant Garamond
-- **Body Font:** Libre Baskerville
-- **Mood:** editorial, classic, literary, traditional, refined, bookish
-- **Google Fonts:** [Cormorant Garamond + Libre Baskerville](https://fonts.google.com/share?selection.family=Cormorant+Garamond:wght@400;500;600;700|Libre+Baskerville:wght@400;700)
+A interface bane fontes serifadas ou cursivas randômicas. A espinha dorsal tipográfica provê clareza mecânica.
 
-**CSS Import:**
+- **Global Font Family:** `Inter` (sans-serif).
+- **Weights:** Regular (400), Medium (500), Bold (700) e Black (900).
+- **Google Fonts Import:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 ```
 
-### Spacing Variables
+### 3. Spacing, Sizing e Acessibilidade Tátil
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
-
-### Shadow Depths
-
-| Level | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+- **Touch Targets Base:** `h-14` (56px) para todos os `<Button>`s e inputs centrais. Interfaces com falhas de clique em telas mobile estão vetadas.
+- **Borders (Rounded):** Componentes pai (`Card`, `Dialog`) usam classe estrita `rounded-xl` (12px). `<Button>`s podem chegar a `rounded-full` ou `rounded-xl`.
+- **Shadows:** A estruturação de eixo Z baseia-se em `shadow-md` para repouso, ascendendo a `shadow-xl` / `shadow-2xl` em *Hover States* (Elevação tátil na Vitrine).
 
 ---
 
-## Component Specs
+## Governança Estrutural UI (shadcn/ui e Lucide)
 
-### Buttons
+Para aniquilar invenções de UI (`UI Drift`), **NENHUM** componente deverá ser escrito usando blocos crús de `<button>` ou `<div>`s de formulários com CSS arbitrário. O Ecossistema React será construído encapsulado.
 
-```css
-/* Primary Button */
-.btn-primary {
-  background: #F97316;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
+### Componentes Obrigatórios (Shadcn CLI)
+- **Ações:** `<Button variant="default">` (herdará o Laranja `#ffa914`) e variações secudárias.
+- **Containers de Destinos:** `<Card>`, `<CardHeader>`, `<CardContent>`.
+- **Atrito Progressivo (Checkout):** Apenas invocáveis via `<Sheet>` (painel lateral) ou `<Dialog>` (Modal central). Proíbe-se roteamento destrutivo `/checkout`.
+- **Dashboards:** A listagem "Minhas Viagens" e CRM dão-se estritamente através do `<Table>` nativo providenciando semântica de linhas, ou Grid Layout em Kanban com Optimistic UI.
+- **Pressão de Vendas (Gamificação):** Obrigatório injetar o `<Progress value={X} />` pintando sua barra indicadora secundária na cor primária alaranjada.
 
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background: transparent;
-  color: #0EA5E9;
-  border: 2px solid #0EA5E9;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-```
-
-### Cards
-
-```css
-.card {
-  background: #F0F9FF;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: var(--shadow-md);
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-```
-
-### Inputs
-
-```css
-.input {
-  padding: 12px 16px;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 200ms ease;
-}
-
-.input:focus {
-  border-color: #0EA5E9;
-  outline: none;
-  box-shadow: 0 0 0 3px #0EA5E920;
-}
-```
-
-### Modals
-
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
-}
-```
+### Iconografia Restringida
+- ❌ **Proibido Emojis (👎 ✈️ 🚌).**
+- ✅ **Aprovado:** Pacote mandatário NPM `lucide-react`. Renderizar como `<Icons.mapPin />`, `<Icons.clock />`, `<Icons.users />`.
 
 ---
 
-## Style Guidelines
+## Anti-Patterns (Violações de SDD UI)
 
-**Style:** Motion-Driven
-
-**Keywords:** Animation-heavy, microinteractions, smooth transitions, scroll effects, parallax, entrance anim, page transitions
-
-**Best For:** Portfolio sites, storytelling platforms, interactive experiences, entertainment apps, creative, SaaS
-
-**Key Effects:** Scroll anim (Intersection Observer), hover (300-400ms), entrance, parallax (3-5 layers), page transitions
-
-### Page Pattern
-
-**Pattern Name:** Hero + Testimonials + CTA
-
-- **Conversion Strategy:** Social proof before CTA. Use 3-5 testimonials. Include photo + name + role. CTA after social proof.
-- **CTA Placement:** Hero (sticky) + Post-testimonials
-- **Section Order:** 1. Hero, 2. Problem statement, 3. Solution overview, 4. Testimonials carousel, 5. CTA
-
----
-
-## Anti-Patterns (Do NOT Use)
-
-- ❌ Generic photos
-- ❌ Complex booking
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
-
----
-
-## Pre-Delivery Checklist
-
-Before delivering any UI code, verify:
-
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- ❌ Escrever CSS puro (ex: `.btn-primary { background: red; }`). **(Apenas Tailwind e Shadcn permitidos).**
+- ❌ Omitir estados de `Hover` ou `Focus-visible`. (A11Y é mandatória).
+- ❌ Componentes transacionais (CTAs de compra) menores que 48px de altura celular.
+- ❌ Renderizar toda a lista de viagens num `Client Component`. SEO exige `Server Component` na `page.tsx` base injetando componentes de cliente só nas folhas (Ex: o Botão em si).
+- ❌ Submeter requisições cegas sem bloqueio tátil de `<Button disable={pending}>` ou Loader em andamento.
