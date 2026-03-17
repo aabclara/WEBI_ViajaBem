@@ -1,46 +1,32 @@
 schema: spec-driven
-
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
-
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
-
-context : |
+context: |
   Por favor, gere todos os artefatos em Português do Brasil.
+  O sistema MUST seguir rigidamente as diretivas operacionais abaixo para blindar contra invenções.
 
   # TECH STACK - BACKEND
-  - Framework: FastAPI
-  - Banco de dados: PostgreSQL
-  - Validação: Pydantic
+  - Framework: FastAPI (Uso mandatório de Pydantic v2)
+  - Banco de Dados / ORM: PostgreSQL manipulado estritamente por SQLAlchemy 2.0
+  - Orquestração: Docker e docker-compose (Obrigatórios para toda a build env)
 
-  #TECH STACK - FRONTEND
-  - Framework: Next.js
-  - Linguagem: TypeScript
-  - Estilo: Tailwind CSS
-  - Componentes: Shadcn/UI
+  # TECH STACK - FRONTEND
+  - Framework: Next.js (Módulo App Router exclusivo)
+  - Linguagem: TypeScript rígido (Proibido cláusula `any`)
+  - Componentes: Restritos ao ecossistema `shadcn/ui` puro e `Tailwind CSS`. Criação de componentes UI interativos abstraídos do zero estão proibidos.
+  - Orquestração: Docker e docker-compose acoplados.
 
-  #DOMAIN
-  - Sistema Gestão de Viagens Viaje Bem
+  # DOMAIN E IDENTIDADE VISUAL
+  - Sistema de Gestão de Viagens "Viaja Bem".
+  - A identidade visual indexada nas imagens dentro do diretório `docs/` constrói o manual inegociável da UI. 
+  - Proíbe-se Emojis. Ícones MUST advir da biblioteca `lucide-react`.
 
 rules:
-  proposal: |
-  - Toda nova proposta deve especifica claramento os objetivos, não-objetivos, decisões que serão tomadas.
+  all: |
+    - A gramática de regras arquiteturais MUST usar cláusulas RFC 2119 (MUST, SHALL, SHOULD, MUST NOT).
   specs: |
-  - Use sempre o formato Given/When/Then () para descrever os cenários.
+    - Escreva cenários de teste obrigatoriamente sob o framework comportamental Gherkin (Dado/Quando/Então).
+    - As specs MUST descrever SOMENTE trajetórias de negócio, falhas e exceções comportamentais; É EXPRESSAMENTE PROIBIDO citar bibliotecas Python ou frameworks JS nos arquivos das `specs/`.
   design: |
-  - Backend: Detalhe os modelos do banco de dados (PostgreSQL) e como o schema do FastAPI/Pydantic garante o Type-safety ponta a ponta.
-  - Frontend: Detalhe os componentes do shadcn/ui que serão utilizados e como o Next.js será utilizado para criar o sistema.
+    - Especifique a topologia de Containers Docker, os relatórios de banco e separe inegociavelmente as fronteiras "use client" das fatias de Next.js.
+  tasks: |
+    - O cronograma de ações do SDD engata execução micro-gerenciada e sequencial proibindo pular steps.
+    - Ordem forçada: Configurar Docker -> Modelagem PostgreSQL base -> Rotas FastAPI -> Consumo Next.js e UI shadcn.

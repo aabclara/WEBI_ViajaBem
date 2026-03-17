@@ -1,32 +1,23 @@
-# Spec: Admin CRM Kanban & Pós-Sinal
+# Spec: Admin CRM Gestão Kanban e Operação de Venda de Impacto
 
-## Contexto
-O processo de gestão da agência Viaja Bem é 100% externo à gateway de pagamentos. Logo, o painel foca na aprovação manual do progresso do funil. O sistema suporta um Dashboard do Líder para reter a retenção da Venda e Link Mágico de Compartilhamento.
+## Requirement: Autoridade Contábil em Fluxos Kanban (Manual Sync)
+A trilha de auditoria administrativa atua limitante transacionando e convertendo cobranças unicamente em repasses processados pelo formato de comunicação humano-a-humano, sem gateways embutidos na folha original web do projeto. O painel atua como interface restrita aos administradores como terminal de escrita verificado.
 
-### Requirement: CRM Kanban Boards
-Visualização direta e centralizada das reservas pendentes aos Administradores.
+### Cenário: Transmissão da Intenção via Deep-Link Cobrador
+- **Dado** que um indivíduo do painel controlador transaciona na listagem gerencial autorizada via Token.
+- **Quando** confrontar uma intenção de reserva no estaleiro inicial e atestar precisão de repasse burocrático de adiantamentos de valores correntes.
+- **E** selecionar/acionar indicador tátil secundário associado diretamente ao card do consumidor prospectado pela base de origem.
+- **Então** a Interface MUST preparar disparo dinâmico Deep-Link e transladar URLs de remessa à rede externa codificando mensagens textuais amigáveis combinadas às credenciais PIX padronizadas fixadas pela gestora original da viagem.
+- **E** esta atividade NÃO resulta num drop/baixa nas reservas internas do fluxo Kanban até aferimento bi-lateral percorrido do adiantamento monetário.
 
-#### Scenario: Visualizando Intenções de Compra Pendentes
-- **WHEN** Admin acessa o painel de Reservas do destino X.
-- **THEN** O Quadro lista intenções na coluna "Novos (CREATED)".
-- **AND** cards apresentam o `combo_size`, Contato (Zap) e Telefone do Líder de Compra.
+### Cenário: Transição Manual de Confirmação (Optimistic Drag)
+- **Dado** que existe o arrasto mecânico e sequencializado de um "Card" ou intenção de compras nos trilhos dos tabuleiros gráficos contendo as aprovações.
+- **Quando** o Operador Gerente assenta ativamente um item de "Criação Nova" em direção exclusiva ao compartimento finalógico referencializado a Sinais Consagradamente Pagos ou Confirmações de Quotas Máximas Financeiras.
+- **Então** a interface principal MUST refletir visualmente em subida instantânea de frame HTML, providenciando envio do dado retificável (o PATCH request) no eixo dos bastidores lógicos do negócio.
+- **E** o eixo principal (O "Servidor de Base Relacional") MUST carimbar as aprovações em persistência blindando os dados da reserva que agora recusam exclusões da fila primária comandadas pelo lider do grupo.
 
-#### Scenario: Gestão Ativa em Whatsapp (External Gateaway)
-- **WHEN** Admin clica em Contatar no Quadro Kanban de Intent "CREATED".
-- **THEN** Sistema abre "API web.whatsapp.me" com link pré-formatado do PIX de cobrança.
-
-#### Scenario: Congelamento Parcial (Sinal de 50%)
-- **WHEN** Admin comprova recebimento de Pix por fora e avança o Card no Kanban para `BLOCKED`.
-- **THEN** a Viagem reconhece aquelas vagas como Efetivamente Traçadas.
-- **AND** a UI/API trancam as edições do Tamanho Total de Combos para aquele grupo (Se o líder quer mudar, deve acionar Suporte da agência manualmente).
-
-### Requirement: O Dashboard do Líder
-Área onde a Burocracia foi delegada ao líder pra retenção pós-ímpeto de compra.
-
-#### Scenario: Submissão de Docs (Identidades)
-- **WHEN** Intenção está nos estados `CREATED` ou `BLOCKED`.
-- **THEN** o Líder pode inserir RGs/Nomes dos Acompanhantes em seu Dashboard da viagem até preencher o tamanho exato de N Cadeiras de seu `combo_size`.
-
-#### Scenario: Emissão Public Link (Acompanhantes)
-- **WHEN** toda a equipe preencheu seus RGs e o Admin mudou a Intent para `CONFIRMED`.
-- **THEN** Dashboard do líder gera um botão "Compartilhar Viagem" que emite um URL read-only (não exige criação de contas adicionais) para que todo o seu time possa abrir a viagem, ver o horário do embarque e acessar uma cópia das regras, aumentando o engajamento orgânico do funil.
+### Cenário de Erro Crítico: Queda de Persistência em Drag Visual Otimista
+- **Dado** toda e qualquer transação originada de modificação e arrasto assinaladas no cenário predecessor.
+- **Quando** sobrevier engarrafamento sistêmico, recusas servidoras equivalentes ao `HTTP 500`, falhas ou quedas bruscas momentâneas da conexão rede que cause invalidação do "PATCH" lógico antes finalizado.
+- **Então** as folhas construtoras do Web Rendering Visual MUST performar Re-Alocação compulsória em "Rollback Tátil" do Card movimentado devolvendo ao estágio temporalmente blindado prévio da matriz lógica consolidada com aval.
+- **E** imediatamente à restituição posicional MUST invocar banner universal comunicativo em teor "Destrutivo" em realce, advertindo com veemência o humano gerencial de falha de conexão persistencial evadiendo conclusões ilegítimas de saldo faturado no núcleo de banco central do SDD.

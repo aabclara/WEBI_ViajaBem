@@ -1,43 +1,29 @@
-# Tasks: Sistema Viaja Bem (MVP) - Micro-Passos
+# Tasks: Sistema Viaja Bem (MVP) - Sequência Atômica Inegociável
 
-Este cronograma foi refatorado em micro-tarefas ("Small Chained Steps") para garantir que o desenvolvimento (seja por humanos ou IA) ocorra sem perda de contexto arquitetural. Nenhuma tarefa contém mais de um domínio lógico.
+Estas tarefas refletem estritamente as decisões de design da Fricção Progressiva, Pagamento WhatsApp e Identidade Visual Clássica, envelopadas sob uma ordem de infraestrutura obrigatória para impedir perdas contextuais na IA.
 
-## Fase 1: Fundação & Infraestrutura (DevOps Inicial)
-- [ ] **1.1.** Criar a pasta do Back-End `backend/` e inicializar o ambiente virtual Python (`venv`).
-- [ ] **1.2.** Instalar as dependências base do Back-End: `fastapi`, `uvicorn`, `pydantic`, `sqlalchemy`, e `alembic`.
-- [ ] **1.3.** Criar o arquivo `backend/main.py` com uma rota "Hello World" do FastAPI rodando.
-- [ ] **1.4.** Criar a pasta do Front-End `frontend/` rodando `npx create-next-app@latest` (usando App Router e Tailwind).
-- [ ] **1.5.** Redigir o arquivo `docker-compose.yml` na raiz do projeto contendo um container para o "PostgreSQL" local.
+## Fase 1: Orquestração e Base Isolada (Docker & PostgreSQL)
+- [ ] **1.1.** Criar o `docker-compose.yml` especificando o serviço `db` (PostgreSQL 16, porta `5432`). Adicionar volumes locais para resiliência.
+- [ ] **1.2.** Esboçar os `Dockerfile`s abstratos das pastas `backend/` (Python 3.12) e `frontend/` (Node 20).
+- [ ] **1.3.** *[Validação]*: Executar `docker-compose up -d db`. Conectar o cliente local PostgreSQL e atestar tabelas zeradas.
 
-## Fase 2: Modelagem de Dados e ORM (DDD)
-- [ ] **2.1.** Mapear Entidade/Tabela `User` no SQLAlchemy (Campos: id, name, email, role).
-- [ ] **2.2.** Mapear Entidade/Tabela `Trip` no SQLAlchemy (Campos: id, destination, seats, price).
-- [ ] **2.3.** Mapear Entidade/Tabela `Reservation` (FKs para User/Trip, comb_size e status enum).
-- [ ] **2.4.** Mapear Entidade/Tabela `Passenger` (FK para Reservation, nome e RG).
-- [ ] **2.5.** Gerar a primeira migration (`alembic revision --autogenerate`) contendo todas as 4 tabelas e rodar o `alembic upgrade head`.
+## Fase 2: Backend Core - Domínio Viaja Bem e ORM (SQLModel)
+- [ ] **2.1.** Na pasta `backend/`, instalar as dependências obrigatórias (`fastapi`, `sqlmodel`, `pydantic`, `alembic`, `psycopg2-binary`).
+- [ ] **2.2.** Mapeamento Relacional: Configurar as quatro entidades essenciais mapeando a modelagem do arquivo Design (`User`, `Trip`, `Reservation`, `Passenger`) providenciando as Foreign Keys.
+- [ ] **2.3.** Migrations: Inicializar o Alembic e gerar a migração zero para popular as tabelas reais no Docker DB.
+- [ ] **2.4.** Schema Validation: Codificar os Schemas Pydantic. Criar Schema para "Intenção de Compra" validando restritamente o `combo_size`.
+- [ ] **2.5.** Roteamento FastAPI de Fricção Progressiva: Codificar a Rota `POST /reservas` (Trancando a vaga e devolvendo Status `CREATED`).
+- [ ] **2.6.** *[Validação]*: Ligar servidor uvicorn. Acessar `/docs` Swagger e popular via UI 1 Cliente, 1 Viagem e postar sucesso de 1 Reserva. Testar se o Pydantic retorna `HTTP 422 HTTPValidationError` para `combo_size` inválido.
 
-## Fase 3: Regras Core de Negócio (Back-End)
-- [ ] **3.1.** Codificar o *Controller/Router* de criação de Reserva (`POST /reservas`), recebendo um input Pydantic de `combo_size` e `email`.
-- [ ] **3.2.** Codificar o Serviço (Use Case) que checa se o "Combo" requisitado não excede os Lugares Disponíveis da `Trip`.
-- [ ] **3.3.** Codificar o Serviço de mudança de estado (`PATCH /reservas/{id}/status`) mudando de CREATED para BLOCKED.
-- [ ] **3.4.** Escrever um teste unitário rústico (`pytest`) verificando que é impossível alterar o `combo_size` de uma reserva já `BLOCKED`.
+## Fase 3: Bootstrap Frontend Estilo Clássico (Next.js & shadcn/ui)
+- [ ] **3.1.** Inicializar app `frontend/` com Router, TypeScript Estrito e Tailwind (`npx create-next-app@latest`).
+- [ ] **3.2.** Iniciar o CLI headless do Shadcn (`npx shadcn-ui@latest init`).
+- [ ] **3.3.** Gerar o Pool de Componentes autorizados: `npx shadcn-ui@latest add button card dialog table input form toast progress`.
+- [ ] **3.4.** Purgar CSS e forçar o Design System no `tailwind.config.ts`: Creme (`#F7F2E8`), Laranja da Escassez (`#FFA915`), e Ciano de Confiança (`#0DBDC2`) como variáveis CSS centrais. Adicionar pacote `lucide-react`.
 
-## Fase 4: O Design System e Globals (Front-End)
-- [ ] **4.1.** Injetar as cores oficiais (`#F7F2E8` Creme, `#0DBDC2` Ciano, `#FFA915` Laranja) no arquivo `tailwind.config.ts`.
-- [ ] **4.2.** Importar e definir a família de fontes ('Inter' ou 'Roboto') como padrão global no `layout.tsx` e `globals.css`.
-- [ ] **4.3.** Criar o componente base de "Botão Principal Primário" reutilizável (Tamanho 48px, Cor Laranja).
-
-## Fase 5: Integração Telas Públicas (App UI)
-- [ ] **5.1.** Construir o Layout Principal Vitrine (`page.tsx` home): Fundo Creme e o Header com as 4 âncoras ("Quem Somos", "Contato").
-- [ ] **5.2.** Construir e importar os *Card Components* de Destino no grid da Home.
-- [ ] **5.3.** Integrar a lógica da "Barra de Gamificação" nesses Cards, simulando a matemática de `(Ocupados / Vagas Totais) * 100` em Laranja.
-- [ ] **5.4.** Construir o Modal Lateral/PopUp de Checkout que surge ao clicar no Card de Viagem.
-
-## Fase 6: Integração Telas de Painéis (Burocracia & CRM)
-- [ ] **6.1.** Construir a Tela de Login unificada (Tabulada entre "Usuário / Código" e "Senha").
-- [ ] **6.2.** Desenvolver o "Dashboard Meu Painel" (Cliente): Renderizar a lista de viagens ativas com botões Laranja de Pagamento Pendente ou Ciano de Confirmado.
-- [ ] **6.3.** Construir o fluxo dentro do Painel Cliente para Adicionar as strings de RG dependendo do tamanho do combo.
-- [ ] **6.4.** Clicar e renderizar a Tela Isolada B2B: "Admin Login".
-- [ ] **6.5.** Puxar o "CRM Kanban Admin" construindo as 4 colunas verticais CSS.
-- [ ] **6.6.** Codificar os "Draggables Cards" (Intenções) e o botão com link SVG contendo o `href="https://wa.me/"` para cobrar o Pix.
-- [ ] **6.7.** Finalizar com a UI Leve do Itinerário Público (Vírus Compartilhável) sem botões de edição de usuário.
+## Fase 4: Engenharia de Telas (Views Específicas)
+- [ ] **4.1.** Construir a "Home / Vitrine": Server Component. Estruturar "Split-Hero" no topo com chamada Laranja e Renderizar o Grid das viagens puxando API com `fetch()`. Usar `<Card>` e implementar a Barra de Gamificação dinâmica no botão Ciano inferior puxando componente `<Progress />` shadcn envelopado no valor matemático da lotação da base.
+- [ ] **4.2.** Construir a Área de Checkout Oculto: Client Component acoplado e interativo usando o modal de base `<Sheet>`. Permitir a requisição em Fricção Mínima sem cobrar senhas robustas no input. 
+- [ ] **4.3.** Construir a Tela Client "Minhas Viagens": O Painel de burocracia onde o líder visualizará na `<Table>` suas Reservas. Aqui fica embutido os avisos (Status Laranja "Falta Zap 50% Pix", ou Liberação Ciano "Cadastrar RGs" dos amigos da van).
+- [ ] **4.4.** Construir o CRM Kanban do Administrador: Desenvolver a interface 4 colunas em React (Novos -> Sinal Pago -> Confirmados -> Cancelados) gerando os crachás arrastáveis e provendo o Botão do WhatsApp (com lucide-icon) que envia Link do banco pro zap. 
+- [ ] **4.5.** *[Validação]*: Simular a falha completa de API enviando Request ao backend fechado. O Painel Front-End MUST disparar `<Toast variant="destructive">` via Hooks Shadcn impedindo falha catastrófica da Janela sem alterar arrays locais.

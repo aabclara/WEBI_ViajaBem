@@ -1,30 +1,25 @@
-# Spec: Core Booking Flow & Gamification
+# Spec: Core Booking Flow e Fricção Progressiva
 
-## Contexto
-O cliente líder explora a Vitrine, sendo impactado pelo fluxo gamificado de vagas e preços, e cadastra sua "intenção" ou "combo" de lugares no ônibus via um fluxo minimamente friccionado.
+## Requirement: Travamento Matemático de Carrinho
+O sistema operante MUST providenciar atrito mínimo inicial durante intenções transacionais. A finalidade do Flow Core é solicitar "Número de Assentos e String de Contato", registrando o estado sem solicitar detalhes burocráticos massivos iniciais, respeitando o princípio prático de fricção progressiva validada pelo modelo de agência física.
 
-### Requirement: Vitrine Gamificada
-A aplicação SSR deve prover os dados reativos de ocupação da viagem em tempo real.
+### Cenário: Submissão Limpa de Pacote via Fricção Mínima
+- **Dado** que um evento/viagem contém fisicamente na base 40 assentos no total, possuindo 24 blocos alocados com status viável de efetivação.
+- **E** o utilizador final abre a interface de captação de pacote a partir do catálogo global.
+- **Quando** ele fornece intenções válidas e informa quantidade simétrica de 4 ingressos/reservas, processando o disparo final.
+- **Então** a Interface Web MUST desabilitar o gatilho principal acionando loader transicional temporário iminente.
+- **E** a Interface Servidora MUST acomodar e alocar os espaços gravados no estado `CREATED` ou Pendente em log base de banco relacional e atrelados estritamente ao e-mail/celular remetido.
+- **E** o Cliente Consumidor MUST ser notificado com Confirmação e Código 2XX positivo transicionando sessões diretamente ao painel final de faturamento do usuário logado.
 
-#### Scenario: Visualização de escassez
-- **WHEN** usuário acessa os detalhes da excursão X.
-- **AND** a excursão possui 40 lugares e constam 35 Intentions nas fases `CREATED`, `BLOCKED` ou `CONFIRMED`.
-- **THEN** a barra de progresso visual deve renderizar 87.5% completa sob cor estética madura.
-- **AND** o texto lateral deve enfatizar "5 Vagas Restantes".
+### Cenário de Erro: Falha por Overbooking Abrupto (Gargalo Transacional)
+- **Dado** que há o limite irredutível de meros 2 assentos na capacidade restante para a Viagem supramencionada no Banco.
+- **Quando** a rotina de submissão do protocolo é violentada com manipulação ou envio em trânsito equivalendo compra em volume exigente de 3 ingressos.
+- **Então** a engine de Validação do Core MUST suspender a persistência em recusa peremptória, de forma a preservar a inexistência de Overbooking e quebra material do Evento.
+- **E** a requisição via rede MUST transbordar com erro semântico equivalente (`HTTP 422 Unprocessable` ou Payload de Falha).
+- **E** as engrenagens de UI MUST interceptar completamente a falha de rede convertendo a recusa cega numa janela/alerta tangível "Toast de Destruição/Rechasso" na mesma folha visual, ordenando que o utilizador manipule menos vagas do inventário da Loja e abortar retentativas no server.
 
-#### Scenario: Desbloqueio progressivo de Tiers
-- **WHEN** os bloqueios confirmados atinjam a meta de N pessoas declarada na viagem.
-- **THEN** a interface de Vitrine deverá atualizar o Status de Bônus Coletivo, exibindo à todos (potenciais novos compradores) que "A excursão obteve o upgrade VIP".
-
-### Requirement: Captura de Intenção e "Fricção Progressiva"
-Bloqueio instantâneo do carrinho de combos para não perder a venda impulsiva, delegando a burocracia do nome completo e RG para depois.
-
-#### Scenario: Submissão rápida do Combo
-- **WHEN** cliente seleciona quantidade N de assentos (O Combo).
-- **AND** informa exclusivamente seus dados primários (Email ou Telefone e Nome da Conta).
-- **THEN** o Back-End cria a entidade `Reservation` com status `CREATED` e salva o `combo_size` como N.
-- **AND** o sistema subtrai N das vagas temporariamente disponíveis no pool daquela Viagem.
-
-#### Scenario: Autenticação Limpa (Passwordless)
-- **WHEN** usuário submete o Combo gerando a `Reservation` pela primeira vez na plataforma.
-- **THEN** o sistema envia um link (Magic Link) simulado para autenticação contínua, permitindo ao líder voltar posteriormente no mesmo dispositivo para checagem do painel, sem exigir senha clássica complexa.
+### Cenário de Erro: Payload Omisso ou Indisciplinado
+- **Dado** que a formulação de entrada sofre ausências ou contornos na modelagem estrutural mínima requerida.
+- **Quando** o Payload transmitido não contém vetores requerentes chaves do escopo inicial (Contatos errôneos de Liderança, ou Strings de volume nulificada).
+- **Então** as camadas do Core MUST rejeitar de imediato a modelagem baseada em Regras com semântica legível (`HTTP 400` / `422`).
+- **E** toda camada Frontend SHALL frear o tráfego nulo ativando os gatilhos preventivos nas bordas de imputação de formulários locais.
