@@ -1,18 +1,18 @@
-# Spec: Modelagem Visual de Interface (Constraint de Padronização)
+# Spec: Modelagem Visual de Interface e Componentes (UI/UX)
 
-## Requirement: Repositório de Base Estética Universal
-Todas as montagens visíveis nas folhas interativas MUST acatar sumariamente as orientações de preceitos clássicos e métricas espaciais consolidadas do manual abstrato originário (`docs/` das evidências visuais colhidas inicializadas em design de base). A transgressão não baseada à métrica espacial representará infração comportamental sistêmica de conformidade UI.
+## Requirement: Padronização Visual Estrita
+A interface de usuário MUST respeitar rigorosamente a identidade visual definida para a agência ("Viaje Bem"), ancorada no uso oficial do ecossistema de componentes `shadcn/ui` e padronizações estabelecidas no Design System oficial.
 
-### Cenário: Transição Espacial no Componente Base
-- **Dado** que os blocos construtores estruturais de layouts rodam interações primárias no carregamento e visitação do prospecto web.
-- **Quando** invocados no processador de layout global da árvore renderizadora inicial de domínio.
-- **Então** a totalidade do plano de base MUST ser ancorada nas bases cromáticas unificadas adotadas (O HEX dominante e Fundo Claro associado ao "Creme Estrito" herdado do logotipo matriz).
-- **E** todos links e direcionadores âncoras adjacentes ao navbar corporativo institucionais (Quem Somos, Ajuda) SHALL usar as classes de destaque em Ciano transitando cores de interatividade no Hover do tráfego do Mouse/Toque sem evocar transições repentinas nas cargas foliares sistêmicas globais (Single Page Behaviour).
-- **E** o visual foliar MUST abolir ícones de natureza emotiva randômica ou Emojis livres apelando puramente ao layout vetorial em Linha Minimalista profissional consolidado.
+### Cenário: Estrutura Base e Identidade Visual (Cores)
+- **Dado** o processo de renderização global da aplicação web perante o usuário final,
+- **Quando** elementos foliares base de estrutura e navegação carregarem de forma interativa,
+- **Então** o fundo global da aplicação MUST respeitar o código e tom unificado do domínio (Fundo Creme/`#F7F2E8`).
+- **E** os elementos interativos, chamadas âncora, ou hyperlinks de navegação SHALL implementar reatividade de foco ou hover expressando coloração Ciano (`#0DBDC2`), operando navegação ágil provida essencialmente por roteamento Single Page Application (SPA).
+- **E** a interface MUST exibir identificação vetorial clássica restrita à biblioteca `lucide-react`, proibindo Emojis ou SVGs randômicos descolados do grid nativo.
 
-### Cenário: Modelos de Grid Gamificados (Listas de Catálogo de Viagem)
-- **Dado** obtenção íntegra de base de dados para array contendo informações limitantes de estoques das vagas ativas sob vigência da Data de Check-in em eventos físicos do Sistema de Domínio Viaje Bem.
-- **Quando** orquestrados iterativamente visualmente no "Grid do Catalisador" do projeto perante o cliente não autenticado.
-- **Então** as fatias de visual MUST invocar estrutura Card Componentizada isolada portando arestas "Arredondadas" e divisões nítidas de texto preenchidas sem serifa.
-- **E** A representação analógica do volume do "Estoque", em métrica de Gamificação da Viagem correspondente a preenchimento, MUST utilizar métricas vetoriais (Uma barra central de Progresso em layout nativo) exibindo preenchimentos Laranjas/Âmbares como cores de estímulo estrito da Agência, proibidas colorações substitutivas.
-- **E** Zonas clicáveis e gatilhos de Call to Action em zonas de decisão vital MUST manter e exibir zonas absolutas de toque tangencial de limites de mínimo legal acessível a populações seniores (Equivalência superior a proporção clássica de 48px/56px), com fundos engajadores Ciano.
+### Cenário: Representação Visual de Viagens no Catálogo
+- **Dado** que a interface recebeu dados ativos de expedições ou pacotes de viagens e de métricas de lotação/escassez,
+- **Quando** processar o mapeamento destes elementos na página de catálogo visual (Home),
+- **Então** cada ocorrência MUST gerar um componente modularizado (Card Component) apresentando formatações com arredondamento explícito.
+- **E** a UI MUST instanciar para os Cards o componente nativo de preenchimento em barra exibindo proporção real (`<Progress />`), imperativamente na cor Laranja de Advertência (`#FFA915`) reforçando gamificação e escassez do Estoque no negócio.
+- **E** zonas designadas para processamento de rotinas principais MUST assegurar dimensões acessíveis ao toque (no mínimo limites recomendados mobile-first) integrados junto à estilização complementar de destaque direcional (Ciano Acionável).

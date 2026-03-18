@@ -1,25 +1,52 @@
 # Spec: Core Booking Flow e Fricção Progressiva
 
-## Requirement: Travamento Matemático de Carrinho
-O sistema operante MUST providenciar atrito mínimo inicial durante intenções transacionais. A finalidade do Flow Core é solicitar "Número de Assentos e String de Contato", registrando o estado sem solicitar detalhes burocráticos massivos iniciais, respeitando o princípio prático de fricção progressiva validada pelo modelo de agência física.
+## Requirement: Gerenciamento de Vagas e Fricção Mínima
+O sistema MUST minimizar a fricção inicial durante a reserva. O fluxo principal solicitará apenas "Número de Assentos" e "Dados de Contato", registrando a intenção de compra sem exigir cadastro completo ou pagamento imediato na plataforma. 
 
-### Cenário: Submissão Limpa de Pacote via Fricção Mínima
-- **Dado** que um evento/viagem contém fisicamente na base 40 assentos no total, possuindo 24 blocos alocados com status viável de efetivação.
-- **E** o utilizador final abre a interface de captação de pacote a partir do catálogo global.
-- **Quando** ele fornece intenções válidas e informa quantidade simétrica de 4 ingressos/reservas, processando o disparo final.
-- **Então** a Interface Web MUST desabilitar o gatilho principal acionando loader transicional temporário iminente.
-- **E** a Interface Servidora MUST acomodar e alocar os espaços gravados no estado `CREATED` ou Pendente em log base de banco relacional e atrelados estritamente ao e-mail/celular remetido.
-- **E** o Cliente Consumidor MUST ser notificado com Confirmação e Código 2XX positivo transicionando sessões diretamente ao painel final de faturamento do usuário logado.
+### Cenário: Criação de Reserva com Fricção Mínima
+- **Dado** que há vagas suficientes disponíveis para uma viagem específica,
+- **Quando** o usuário preencher o formulário informando a quantidade desejada e seus dados de contato básicos,
+- **Então** a interface MUST exibir um indicador de carregamento e desabilitar o botão de envio.
+- **E** o backend MUST registrar a reserva com status `CREATED` vinculada ao contato informado.
+- **E** o sistema MUST retornar HTTP 201 e redirecionar o usuário para o painel de acompanhamento da reserva.
 
-### Cenário de Erro: Falha por Overbooking Abrupto (Gargalo Transacional)
-- **Dado** que há o limite irredutível de meros 2 assentos na capacidade restante para a Viagem supramencionada no Banco.
-- **Quando** a rotina de submissão do protocolo é violentada com manipulação ou envio em trânsito equivalendo compra em volume exigente de 3 ingressos.
-- **Então** a engine de Validação do Core MUST suspender a persistência em recusa peremptória, de forma a preservar a inexistência de Overbooking e quebra material do Evento.
-- **E** a requisição via rede MUST transbordar com erro semântico equivalente (`HTTP 422 Unprocessable` ou Payload de Falha).
-- **E** as engrenagens de UI MUST interceptar completamente a falha de rede convertendo a recusa cega numa janela/alerta tangível "Toast de Destruição/Rechasso" na mesma folha visual, ordenando que o utilizador manipule menos vagas do inventário da Loja e abortar retentativas no server.
+### Cenário de Erro: Falha por Overbooking (Vagas Insuficientes)
+- **Dado** que a viagem possui apenas 2 vagas disponíveis,
+- **Quando** o usuário tentar reservar 3 ou mais vagas,
+- **Então** o backend MUST recusar a transação para impedir overbooking.
+- **E** a API MUST retornar HTTP 422 (Unprocessable Entity).
+- **E** a interface MUST interceptar a falha e exibir uma mensagem de erro clara informando a disponibilidade atual, sem recarregar a página.
 
-### Cenário de Erro: Payload Omisso ou Indisciplinado
-- **Dado** que a formulação de entrada sofre ausências ou contornos na modelagem estrutural mínima requerida.
-- **Quando** o Payload transmitido não contém vetores requerentes chaves do escopo inicial (Contatos errôneos de Liderança, ou Strings de volume nulificada).
-- **Então** as camadas do Core MUST rejeitar de imediato a modelagem baseada em Regras com semântica legível (`HTTP 400` / `422`).
-- **E** toda camada Frontend SHALL frear o tráfego nulo ativando os gatilhos preventivos nas bordas de imputação de formulários locais.
+### Cenário de Erro: Payload Inválido ou Incompleto
+- **Dado** que o usuário tente enviar o formulário via API contendo dados estruturais incorretos ou faltantes,
+- **Quando** o backend receber a requisição,
+- **Então** o sistema MUST rejeitar o payload retornando HTTP 400 ou 422.
+- **E** o frontend SHALL realizar validação local prévia para evitar o envio de dados inválidos ao servidor.
+
+### Cenário: Expiração do prazo de pagamento do sinal (24h)
+- **Dado** que o líder realizou uma reserva com status `CREATED`,
+- **Quando** o prazo de 24 horas vencer sem confirmação de pagamento do sinal pela agência,
+- **Então** o sistema MUST manter a reserva visível no Kanban
+- **E** a agência MUST decidir manualmente entre cancelar a reserva ou estender o prazo — o sistema NÃO cancela automaticamente.
+
+### Cenário: Autenticação do líder via OTP por email
+- **Dado** que o líder forneceu apenas seu email na vitrine ao garantir a vaga,
+- **Quando** ele tentar acessar o painel "Minhas Viagens",
+- **Então** o sistema MUST enviar um código OTP para o email cadastrado e MUST conceder acesso somente após validação bem-sucedida do código.
+- **E** caso o código expire ou seja inválido, o sistema MUST permitir reenvio e MUST exibir mensagem de erro clara sem expor detalhes técnicos.
+
+### Cenário: Geração do voucher viral
+- **Dado** que a reserva do líder teve o sinal confirmado pela agência e o status mudou para `BLOCKED`,
+- **Quando** o sistema processar essa transição,
+- **Então** o sistema MUST gerar automaticamente um link único e exclusivo para o líder compartilhar com seus acompanhantes.
+- **E** o link MUST ser exibido no painel do líder e MUST permitir que os acompanhantes visualizem os dados da viagem sem precisar de autenticação.
+
+### Cenário de Erro: Falha de conexão com o banco de dados
+- **Dado** que o usuário tentou realizar qualquer operação que exija persistência,
+- **Quando** o banco de dados estiver indisponível,
+- **Então** o sistema MUST retornar HTTP 503 e a interface MUST exibir mensagem de indisponibilidade temporária sem expor detalhes técnicos ao usuário.
+
+### Cenário de Erro: Timeout de resposta da API
+- **Dado** que o usuário clicou em confirmar uma ação,
+- **Quando** a API demorar além do tempo aceitável para responder,
+- **Então** a interface MUST exibir o componente de loading padrão, desabilitar o botão de envio e após o timeout MUST notificar o usuário com mensagem de erro sem recarregar a página.
