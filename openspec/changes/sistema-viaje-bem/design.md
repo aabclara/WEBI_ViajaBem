@@ -55,4 +55,62 @@ Integração física em TypeScript-Like Types acoplada sobre o ecossistema `Pyda
 **Tabela: `passengers`**
 - `id`: UUID (Primary Key).
 - `reservation_id`: UUID (Foreign Key).
-- `rg`: Varchar.
+- `name`: Varchar (NOT NULL) — nome completo do acompanhante.
+- `rg`: Varchar (NOT NULL).
+
+---
+
+## 4. Contratos Pydantic (TypeSafe)
+
+Todos os schemas abaixo MUST ser definidos com `Pydantic v2` na camada `backend/schemas/`. A rota FastAPI não aceita inputs não tipados por estes modelos.
+
+**`ReservationCreate`** — payload enviado pelo frontend ao criar uma reserva
+```python
+class ReservationCreate(BaseModel):
+    email: EmailStr       # e-mail do líder
+    trip_id: UUID
+    combo_size: int       # mínimo 1, máximo total_seats disponíveis
+```
+
+**`ReservationResponse`** — resposta retornada pela API após criação bem-sucedida
+```python
+class ReservationResponse(BaseModel):
+    id: UUID
+    status: ReservationStatus  # Enum: CREATED | BLOCKED | CONFIRMED | CANCELED
+    trip_id: UUID
+    combo_size: int
+```
+
+**`PassengerCreate`** — payload para cadastrar um acompanhante no painel do líder
+```python
+class PassengerCreate(BaseModel):
+    name: str             # nome completo
+    rg: str               # documento RG
+    reservation_id: UUID
+```
+
+**`UserAuth`** — payload inicial de autenticação (dispara envio do OTP)
+```python
+class UserAuth(BaseModel):
+    email: EmailStr
+```
+
+**`OTPVerify`** — payload para validar o código OTP recebido por email
+```python
+class OTPVerify(BaseModel):
+    email: EmailStr
+    code: str             # código numérico de 6 dígitos
+```
+
+---
+
+## 5. Índices do Banco (PostgreSQL)
+
+Os índices abaixo MUST ser declarados explicitamente nas migrations do Alembic para garantir desempenho nas queries críticas.
+
+| Tabela | Coluna | Tipo | Constraint | Finalidade |
+|---|---|---|---|---|
+| `users` | `email` | BTREE | UNIQUE | Autenticação e busca do líder |
+| `reservations` | `trip_id` | BTREE | — | Contagem de vagas ocupadas (gamificação) |
+| `reservations` | `user_id` | BTREE | — | Listagem de reservas no painel do líder |
+| `trips` | `start_date` | BTREE | — | Ordenação do catálogo de viagens |
