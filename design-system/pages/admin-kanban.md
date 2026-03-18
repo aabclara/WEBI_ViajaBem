@@ -1,6 +1,6 @@
 ---
 page: Dashboard Kanban Admin
-source_directory: docs/stitch_showcase_viaja_bem/admin_kanban_viaja_bem/
+source_directory: docs/stitch_showcase_viaje_bem/admin_kanban_viaje_bem/
 ---
 
 # Design Override: Kanban CRM
@@ -9,7 +9,7 @@ source_directory: docs/stitch_showcase_viaja_bem/admin_kanban_viaja_bem/
 
 ## Estrutura Topológica (Baseada no HTML Original)
 
-Quando traduzirmos o arquivo `code.html` estático do diretório `admin_kanban_viaja_bem` para o Next.js, a IA MUST realizar a seguinte transição cirúrgica para garantir reatividade sem ferir a Identidade Visual corporativa:
+Quando traduzirmos o arquivo `code.html` estático do diretório `admin_kanban_viaje_bem` para o Next.js, a IA MUST realizar a seguinte transição cirúrgica para garantir reatividade sem ferir a Identidade Visual corporativa:
 
 ### 1. Setup do Board (Colunas)
 - O Container `flex overflow-x-auto gap-6` que embala as 4 colunas MUST ser atrelado a um estado isolado com `"use client"`.

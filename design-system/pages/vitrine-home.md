@@ -1,6 +1,6 @@
 ---
 page: Vitrine Home (Catálogo)
-source_directory: docs/stitch_showcase_viaja_bem/showcase_bot_es_empilhados/
+source_directory: docs/stitch_showcase_viaje_bem/showcase_bot_es_empilhados/
 ---
 
 # Design Override: Vitrine Home

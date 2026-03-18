@@ -15,7 +15,7 @@ context: |
   - Orquestração: Docker e docker-compose acoplados.
 
   # DOMAIN E IDENTIDADE VISUAL
-  - Sistema de Gestão de Viagens "Viaja Bem".
+  - Sistema de Gestão de Viagens "Viaje Bem".
   - A identidade visual indexada nas imagens dentro do diretório `docs/` constrói o manual inegociável da UI. 
   - Proíbe-se Emojis. Ícones MUST advir da biblioteca `lucide-react`.
 
