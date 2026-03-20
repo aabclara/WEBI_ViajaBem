@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa914",
+                        "background-light": "#F7F2E9",
+                        "background-dark": "#231c0f",
+                        "teal-accent": "#0d9488"
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center p-4 font-display">
+<div class="w-full max-w-md flex flex-col items-center">
+<!-- Main Card -->
+<div class="w-full bg-white dark:bg-slate-900 rounded-xl shadow-md border border-slate-100 dark:border-slate-800 p-8 md:p-10">
+<!-- Top Navigation / Logo -->
+<div class="flex flex-col items-center mb-8">
+<div class="mb-6">
+<img alt="Viaje Bem Logo" class="h-12 w-auto object-contain" data-alt="Viaje Bem corporate travel agency logo" src="https://lh3.googleusercontent.com/aida/ADBb0ujJdPjIm5loGnMNoM6lE6hJke6Ijcvjupd97BjbGhyb33ofdT961RD5nZOE-peB83bdEF0C2BcCUfcQLdipUWPPdz-oOMS15Fv2vAU_Wdj-d0TStZxQuPvsi6G2Qv_3SQw0Q0PafmqhxNnTUTnTJAvaxvRI5X3PBgfQmTb936lq72Oia-MU_3rjzEkSMhe4jFRahhWGceWyPdMds7Rq4w2nh5yqiUKg6DW67tVF525qA6Cy26P-o7xyxq9gkaM-1CxDRcLVXpM"/>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight tracking-tight text-center">
+                    Recuperar Senha
+                </h1>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-relaxed text-center mt-3">
+                    Insira seu e-mail cadastrado para receber as instruções de redefinição.
+                </p>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-6">
+<div class="space-y-2">
+<label class="block text-slate-800 dark:text-slate-200 text-sm font-semibold" for="email">
+                        E-mail
+                    </label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-teal-accent">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="block w-full h-12 pl-10 pr-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-base placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-accent/20 focus:border-teal-accent transition-colors duration-200" id="email" name="email" placeholder="seu@email.com" type="email"/>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full h-12 bg-primary hover:bg-primary/90 font-bold rounded-lg shadow-sm transition-all duration-200 flex items-center justify-center gap-2 text-white" type="submit">
+                    Enviar Link de Recuperação
+                </button>
+</form>
+<!-- Footer Navigation -->
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
+<a class="inline-flex items-center gap-2 text-teal-accent hover:text-teal-accent/80 font-semibold text-sm transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Voltar para o login
+                </a>
+</div>
+</div>
+<!-- Utility Footer -->
+<div class="mt-8 text-center">
+<p class="text-slate-600 dark:text-slate-400 text-xs font-medium">
+                © 2024 Viaja Bem. Todos os direitos reservados.
+            </p>
+</div>
+</div>
+</body></html>

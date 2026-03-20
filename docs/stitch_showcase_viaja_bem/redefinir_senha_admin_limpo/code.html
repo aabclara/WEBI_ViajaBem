@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffa914",
+                        "background-light": "#F7F2E9",
+                        "background-dark": "#231c0f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+<div class="w-full max-w-[440px] bg-white dark:bg-slate-900 rounded-xl shadow-xl shadow-slate-200/50 dark:shadow-black/20 p-8 border border-slate-100 dark:border-slate-800">
+<div class="flex flex-col items-center mb-8">
+<img alt="Viaja Bem Agência de Turismo Logo" class="h-16 w-auto mb-6 object-contain" data-alt="Viaja Bem travel agency corporate logo" src="data:image/png;base64,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"/>
+<div class="bg-primary/10 text-primary w-12 h-12 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl">lock_reset</span>
+</div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white text-center">Redefinir Senha</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-2 text-center">Portal Administrativo - Viaja Bem</p>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="new-password">
+                        Nova Senha
+                    </label>
+<div class="relative">
+<input class="w-full h-12 px-4 pr-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-slate-900 dark:text-white" id="new-password" placeholder="Digite sua nova senha" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<p class="text-[11px] text-slate-400 dark:text-slate-500">Mínimo de 8 caracteres com letras e números.</p>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="confirm-password">
+                        Confirmar Nova Senha
+                    </label>
+<div class="relative">
+<input class="w-full h-12 px-4 pr-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-slate-900 dark:text-white" id="confirm-password" placeholder="Repita a nova senha" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<button class="w-full h-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg shadow-md shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+                    Atualizar Senha Administrativa
+                </button>
+</form>
+</div>
+<footer class="mt-8 text-center text-slate-400 dark:text-slate-600 text-xs">
+<p>© 2024 Viaja Bem Agência de Viagens S.A. <br class="sm:hidden"/> Acesso Restrito a Colaboradores.</p>
+</footer>
+</main>
+</body></html>
