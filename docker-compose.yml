@@ -1,0 +1,76 @@
+services:
+  # ─── Banco de Dados ────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: viajabem
+      POSTGRES_USER: viajabem
+      POSTGRES_PASSWORD: viajabem
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U viajabem"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ─── Backend (FastAPI) ─────────────────────────────────────────────
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://viajabem:viajabem@db:5432/viajabem
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  # ─── Frontend (Next.js) ────────────────────────────────────────────
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://api:8000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - api
+    command: npm run dev
+
+  # ─── Testes (pytest — execução isolada) ───────────────────────────
+  test:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://viajabem:viajabem@db:5432/viajabem
+      ADMIN_JWT_SECRET: secret-de-teste-com-pelo-menos-32-chars-ok
+      ADMIN_JWT_EXPIRATION_HOURS: "8"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    command: pytest --tb=short -v --asyncio-mode=auto
+    profiles:
+      - test
+
+volumes:
+  postgres_data:
